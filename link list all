@@ -1,0 +1,110 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+struct Node*head=new Node();
+struct Node*catce = head;
+
+//insart link list data;
+void insert(int x)
+{
+    if(head->data)
+    {
+        struct Node *newnode=new Node();
+        newnode->data=x;
+        newnode->next=NULL;
+        catce->next=newnode;
+        catce=newnode;
+    }
+    else
+    {
+        head->data=x;
+    }
+}
+//sarce value link list
+void sarceing(int x){
+ int count = 0;
+ struct Node * temp =head;
+    while(temp!=NULL){
+   {
+     if(temp->data==x)
+        cout<<"index number is -"<<++count<<endl;
+   }
+   temp=temp->next;
+   count++;
+
+}
+cout<<"NOt found"<<endl;
+}
+
+
+//delate a link list;
+void deletex(int x){
+    int count = 0;
+ struct Node * temp =head;
+ struct Node * previas =head;
+    while(temp!=NULL){
+
+    if(temp->data==x){
+        if(count==0)head=head->next;
+         else{
+    previas->next = temp->next;
+   }
+   }
+   previas=temp;
+   temp=temp->next;
+   count++;
+
+}
+}
+
+
+//Updating link list;
+void Update(int x,int y){
+ struct Node * temp =head;
+    while(temp!=NULL){
+    if(temp->data==x){
+        temp->data=y;
+   }
+
+   temp=temp->next;
+
+}
+}
+
+//print a link list;
+void display(){
+    struct Node * temp =head;
+    while(temp!=NULL)
+   {
+     cout<<temp->data<<"->";
+        temp=temp->next;
+   }
+   cout<<endl;
+}
+
+
+
+int main()
+{
+    head->next = NULL;
+    head->data = NULL;
+    insert(5);
+    insert(7);
+    insert(10);
+    insert(6);
+    insert(100);
+    display();
+    deletex(10);
+    display();
+    deletex(5);
+    display();
+    Update(6, 60);
+    display();
+}
+
+
