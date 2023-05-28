@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//insart array
+void insert_array(int ar[],int n,int pos,int item){
+    int j=n;
+   while( j >= pos) {
+    ar[j+1] = ar[j];
+      j--;
+   }
+
+   ar[pos] = item;
+
+   printf("The array elements after insertion :\n");
+}
+//search
+ void sarch(int ar[],int n,int s){
+ for(int i=0;i<n;i++){
+    if(ar[i]==s){
+        cout<<i<<"  "<<ar[i]<<"  find it"<<endl;
+        return;
+    }
+ }
+
+ cout<<"don't find"<<endl;
+ }
+
+ //delete
+void delate_Array(int ar[],int n,int pos){
+    int j=pos;
+   while( j < n) {
+      ar[j] = ar[j+1];
+      j++;
+   }
+
+
+  printf("The array elements after deletion :\n");
+
+
+}
+//update
+ void update(int ar[],int e,int data){
+ ar[e]=data;
+ }
+
+void printinfo(int ar[],int n){
+    for(int i = 0; i<n; i++) {
+     cout<<ar[i]<<"  ";
+   }
+   cout<<endl;
+}
+
+
+int main()
+{
+int ar[]={1,2,3,4,6,7,9,10};
+int n= sizeof(ar)/sizeof(ar[0]);
+ printinfo(ar,n);
+ insert_array(ar,n,4,12);
+ n=n+1;
+ printinfo(ar,n);
+ cout<<endl;
+ delate_Array(ar,n,4);
+ n=n-1;
+printinfo(ar,n);
+sarch(ar,n,10);
+update(ar,3,13);
+printinfo(ar,n);
+    return 0;
+}
