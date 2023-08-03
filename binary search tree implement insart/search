@@ -1,0 +1,81 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+int data;
+struct node* left;
+struct node* right;
+};
+struct node*creatnode(int value){
+  struct node *newnode =new node();
+  newnode->data = value;
+  newnode->left= NULL;
+  newnode->right = NULL;
+  return newnode;
+}
+
+struct node*insart(struct node*root,int value){
+  if(root==NULL){
+    return creatnode(value);
+  }
+
+  if(value<root->data){
+    root->left=insart(root->left, value);
+  }
+  if(value>root->data){
+    root->right=insart(root->right, value);
+  }
+  return root;
+}
+struct node* searce(struct node*root,int value){
+    if(root==NULL||root->data==value){
+        return root;
+    }
+    if(root->data>value){
+        return searce(root->left,value);
+    }
+     return searce(root->right,value);
+}
+void inordertraves(struct node*root){
+if(root!=NULL){
+    inordertraves(root->left);
+    cout<<root->data<<"<->";
+    inordertraves(root->right);
+}
+}
+struct node*freeTree(struct node*root){
+   if (root != NULL) {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+
+}
+
+int main(){
+struct node* root = NULL;
+
+    root = insart(root, 50);
+    insart(root, 30);
+    insart(root, 20);
+    insart(root, 40);
+    insart(root, 70);
+    insart(root, 60);
+    insart(root, 80);
+
+    cout<<"Inorder Traversal: "<<endl;
+    inordertraves(root);
+    printf("\n");
+
+    int searchKey = 40;
+    struct node* searchResult = searce(root, searchKey);
+    if (searchResult != NULL) {
+        printf("%d found in the tree.\n", searchKey);
+    } else {
+        printf("%d not found in the tree.\n", searchKey);
+    }
+
+    freeTree(root);
+    return 0;
+
+
+}
